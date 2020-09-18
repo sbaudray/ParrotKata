@@ -7,10 +7,6 @@
     "outDir": "./dist/",
     "noEmitOnError": true,
     "strict": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": false,
     "downlevelIteration": true,
     "experimentalDecorators": true
   },
