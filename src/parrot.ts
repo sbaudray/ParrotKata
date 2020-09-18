@@ -1,3 +1,7 @@
+interface IParrot {
+  getSpeed: (coconuts: number) => number;
+}
+
 export enum ParrotTypes {
   EUROPEAN,
   AFRICAN,
@@ -15,7 +19,7 @@ export class Parrot {
   public getSpeed(): number {
     switch (this.parrotType) {
       case ParrotTypes.EUROPEAN:
-        return new EuropeanParrot().getSpeed();
+        return new EuropeanParrot().getSpeed(this.numberOfCoconuts);
       case ParrotTypes.AFRICAN:
         return new AfricanParrot().getSpeed(this.numberOfCoconuts);
       case ParrotTypes.NORWEGIAN_BLUE:
@@ -36,14 +40,14 @@ export class Parrot {
   }
 }
 
-class EuropeanParrot {
-  getSpeed() {
+class EuropeanParrot implements IParrot {
+  getSpeed(coconuts: number) {
     return 12;
   }
 }
 
-class AfricanParrot {
-  getSpeed(numberOfCoconuts: number) {
-    return Math.max(0, 12 - 9 * numberOfCoconuts);
+class AfricanParrot implements IParrot {
+  getSpeed(coconuts: number) {
+    return Math.max(0, 12 - 9 * coconuts);
   }
 }
