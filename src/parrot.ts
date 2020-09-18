@@ -36,13 +36,25 @@ export class Parrot {
 
 class EuropeanParrot implements IParrot {
   getSpeed(coconuts: number) {
+    return this.getBaseSpeed();
+  }
+
+  private getBaseSpeed() {
     return 12;
   }
 }
 
 class AfricanParrot implements IParrot {
   getSpeed(coconuts: number) {
-    return Math.max(0, 12 - 9 * coconuts);
+    return Math.max(0, this.getBaseSpeed() - this.getLoadFactor() * coconuts);
+  }
+
+  private getBaseSpeed() {
+    return 12;
+  }
+
+  private getLoadFactor() {
+    return 9;
   }
 }
 
