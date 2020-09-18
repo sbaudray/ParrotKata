@@ -32,18 +32,18 @@ class ParrotBase {
     protected isNailed: boolean
   ) {}
 
-  protected getBaseSpeed() {
+  protected get baseSpeed() {
     return 12;
   }
 
-  protected getLoadFactor() {
+  protected get loadFactor() {
     return 9;
   }
 }
 
 class EuropeanParrot extends ParrotBase implements IParrot {
   getSpeed() {
-    return this.getBaseSpeed();
+    return this.baseSpeed;
   }
 }
 
@@ -51,17 +51,17 @@ class AfricanParrot extends ParrotBase implements IParrot {
   getSpeed() {
     return Math.max(
       0,
-      this.getBaseSpeed() - this.getLoadFactor() * this.numberOfCoconuts
+      this.baseSpeed - this.loadFactor * this.numberOfCoconuts
     );
   }
 }
 
 class NorwegianParrot extends ParrotBase implements IParrot {
   getSpeed() {
-    return this.isNailed ? 0 : this.getBaseSpeedWithVoltage();
+    return this.isNailed ? 0 : this.baseSpeedWithVoltage;
   }
 
-  private getBaseSpeedWithVoltage() {
-    return Math.min(24, this.voltage * this.getBaseSpeed());
+  private get baseSpeedWithVoltage() {
+    return Math.min(24, this.voltage * this.baseSpeed);
   }
 }
