@@ -26,19 +26,14 @@ export class Parrot {
 }
 
 class ParrotBase {
+  protected readonly baseSpeed = 12;
+  protected readonly loadFactor = 9;
+
   constructor(
-    protected numberOfCoconuts: number,
-    protected voltage: number,
-    protected isNailed: boolean
+    protected readonly numberOfCoconuts: number,
+    protected readonly voltage: number,
+    protected readonly isNailed: boolean
   ) {}
-
-  protected get baseSpeed() {
-    return 12;
-  }
-
-  protected get loadFactor() {
-    return 9;
-  }
 }
 
 class EuropeanParrot extends ParrotBase implements IParrot {
