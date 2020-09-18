@@ -16,21 +16,16 @@ export class Parrot implements IParrot {
     protected isNailed: boolean
   ) {}
 
-  public getSpeed(): number {
-    let parrot = EuropeanParrot;
-    switch (this.parrotType) {
-      case ParrotTypes.EUROPEAN:
-        parrot = EuropeanParrot;
-        break;
-      case ParrotTypes.AFRICAN:
-        parrot = AfricanParrot;
-        break;
-      case ParrotTypes.NORWEGIAN_BLUE:
-        parrot = NorwegianParrot;
-        break;
-    }
+  private get parrotClasses() {
+    return {
+      [ParrotTypes.EUROPEAN]: EuropeanParrot,
+      [ParrotTypes.AFRICAN]: AfricanParrot,
+      [ParrotTypes.NORWEGIAN_BLUE]: NorwegianParrot,
+    };
+  }
 
-    return new parrot(
+  public getSpeed(): number {
+    return new this.parrotClasses[this.parrotType](
       this.parrotType,
       this.numberOfCoconuts,
       this.voltage,
