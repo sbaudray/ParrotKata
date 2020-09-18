@@ -9,20 +9,18 @@ export enum ParrotTypes {
 }
 
 export class Parrot implements IParrot {
+  private parrotClasses = {
+    [ParrotTypes.EUROPEAN]: EuropeanParrot,
+    [ParrotTypes.AFRICAN]: AfricanParrot,
+    [ParrotTypes.NORWEGIAN_BLUE]: NorwegianParrot,
+  };
+
   constructor(
     private parrotType: ParrotTypes,
     protected numberOfCoconuts: number,
     protected voltage: number,
     protected isNailed: boolean
   ) {}
-
-  private get parrotClasses() {
-    return {
-      [ParrotTypes.EUROPEAN]: EuropeanParrot,
-      [ParrotTypes.AFRICAN]: AfricanParrot,
-      [ParrotTypes.NORWEGIAN_BLUE]: NorwegianParrot,
-    };
-  }
 
   public getSpeed(): number {
     return new this.parrotClasses[this.parrotType](
