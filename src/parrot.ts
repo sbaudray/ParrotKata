@@ -8,7 +8,7 @@ export enum ParrotTypes {
   NORWEGIAN_BLUE,
 }
 
-export class Parrot {
+export class Parrot implements IParrot {
   constructor(
     private parrotType: ParrotTypes,
     protected numberOfCoconuts: number,
@@ -46,7 +46,7 @@ export class Parrot {
     return 12;
   }
 
-  protected getLoadFactor(): number {
+  protected getLoadFactor() {
     return 9;
   }
 }
@@ -71,7 +71,7 @@ class NorwegianParrot extends Parrot implements IParrot {
     return this.isNailed ? 0 : this.getBaseSpeedWithVoltage(this.voltage);
   }
 
-  private getBaseSpeedWithVoltage(voltage: number): number {
+  private getBaseSpeedWithVoltage(voltage: number) {
     return Math.min(24, voltage * this.getBaseSpeed());
   }
 }
