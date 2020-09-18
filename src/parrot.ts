@@ -17,29 +17,25 @@ export class Parrot implements IParrot {
   ) {}
 
   public getSpeed(): number {
+    let parrot = EuropeanParrot;
     switch (this.parrotType) {
       case ParrotTypes.EUROPEAN:
-        return new EuropeanParrot(
-          this.parrotType,
-          this.numberOfCoconuts,
-          this.voltage,
-          this.isNailed
-        ).getSpeed();
+        parrot = EuropeanParrot;
+        break;
       case ParrotTypes.AFRICAN:
-        return new AfricanParrot(
-          this.parrotType,
-          this.numberOfCoconuts,
-          this.voltage,
-          this.isNailed
-        ).getSpeed();
+        parrot = AfricanParrot;
+        break;
       case ParrotTypes.NORWEGIAN_BLUE:
-        return new NorwegianParrot(
-          this.parrotType,
-          this.numberOfCoconuts,
-          this.voltage,
-          this.isNailed
-        ).getSpeed();
+        parrot = NorwegianParrot;
+        break;
     }
+
+    return new parrot(
+      this.parrotType,
+      this.numberOfCoconuts,
+      this.voltage,
+      this.isNailed
+    ).getSpeed();
   }
 
   protected getBaseSpeed() {
