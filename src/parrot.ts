@@ -15,7 +15,7 @@ export class Parrot {
   public getSpeed(): number {
     switch (this.parrotType) {
       case ParrotTypes.EUROPEAN:
-        return this.getBaseSpeed();
+        return new EuropeanParrot().getSpeed();
       case ParrotTypes.AFRICAN:
         return Math.max(
           0,
@@ -36,5 +36,11 @@ export class Parrot {
 
   private getBaseSpeedWithVoltage(voltage: number): number {
     return Math.min(24, voltage * this.getBaseSpeed());
+  }
+}
+
+class EuropeanParrot {
+  getSpeed() {
+    return 12;
   }
 }
