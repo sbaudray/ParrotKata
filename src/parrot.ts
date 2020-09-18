@@ -24,7 +24,6 @@ export class Parrot {
       case ParrotTypes.NORWEGIAN_BLUE:
         return this.isNailed ? 0 : this.getBaseSpeedWithVoltage(this.voltage);
     }
-    throw new Error("Should be unreachable");
   }
 
   private getBaseSpeed(): number {
