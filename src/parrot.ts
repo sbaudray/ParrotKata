@@ -64,10 +64,10 @@ class AfricanParrot extends Parrot implements IParrot {
 
 class NorwegianParrot extends Parrot implements IParrot {
   getSpeed() {
-    return this.isNailed ? 0 : this.getBaseSpeedWithVoltage(this.voltage);
+    return this.isNailed ? 0 : this.getBaseSpeedWithVoltage();
   }
 
-  private getBaseSpeedWithVoltage(voltage: number) {
-    return Math.min(24, voltage * this.getBaseSpeed());
+  private getBaseSpeedWithVoltage() {
+    return Math.min(24, this.voltage * this.getBaseSpeed());
   }
 }
