@@ -8,28 +8,29 @@ export enum ParrotTypes {
   NORWEGIAN_BLUE,
 }
 
-export class Parrot implements IParrot {
-  private parrotClasses = {
-    [ParrotTypes.EUROPEAN]: EuropeanParrot,
-    [ParrotTypes.AFRICAN]: AfricanParrot,
-    [ParrotTypes.NORWEGIAN_BLUE]: NorwegianParrot,
-  };
+export class Parrot {
+  static for(
+    parrotType: ParrotTypes,
+    numberOfCoconuts: number,
+    voltage: number,
+    isNailed: boolean
+  ) {
+    let parrotClasses = {
+      [ParrotTypes.EUROPEAN]: EuropeanParrot,
+      [ParrotTypes.AFRICAN]: AfricanParrot,
+      [ParrotTypes.NORWEGIAN_BLUE]: NorwegianParrot,
+    };
 
+    return new parrotClasses[parrotType](numberOfCoconuts, voltage, isNailed);
+  }
+}
+
+class ParrotBase {
   constructor(
-    private parrotType: ParrotTypes,
     protected numberOfCoconuts: number,
     protected voltage: number,
     protected isNailed: boolean
   ) {}
-
-  public getSpeed(): number {
-    return new this.parrotClasses[this.parrotType](
-      this.parrotType,
-      this.numberOfCoconuts,
-      this.voltage,
-      this.isNailed
-    ).getSpeed();
-  }
 
   protected getBaseSpeed() {
     return 12;
@@ -40,13 +41,13 @@ export class Parrot implements IParrot {
   }
 }
 
-class EuropeanParrot extends Parrot implements IParrot {
+class EuropeanParrot extends ParrotBase implements IParrot {
   getSpeed() {
     return this.getBaseSpeed();
   }
 }
 
-class AfricanParrot extends Parrot implements IParrot {
+class AfricanParrot extends ParrotBase implements IParrot {
   getSpeed() {
     return Math.max(
       0,
@@ -55,7 +56,7 @@ class AfricanParrot extends Parrot implements IParrot {
   }
 }
 
-class NorwegianParrot extends Parrot implements IParrot {
+class NorwegianParrot extends ParrotBase implements IParrot {
   getSpeed() {
     return this.isNailed ? 0 : this.getBaseSpeedWithVoltage();
   }
